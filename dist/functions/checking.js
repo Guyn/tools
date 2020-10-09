@@ -1,31 +1,22 @@
 "use strict";
 // Checking
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isHex = void 0;
+exports.isObjectString = exports.isHex = void 0;
 exports.isHex = function (hex) {
-    return (hex.length == 7 &&
-        hex.charAt(0) == "#" &&
-        !hex.split("").find(function (char, index) {
-            if (index == 0)
-                return false;
-            return [
-                "a",
-                "b",
-                "c",
-                "d",
-                "e",
-                "f",
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-            ].includes(typeof char == "number" ? char : char.toLowerCase());
-        }));
+    var hexChars = hex.toLowerCase().split("");
+    return hexChars.length !== 7 ||
+        hexChars[0] !== "#" ||
+        hexChars.slice(1, 7).findIndex(function (c) { return "0123456789abcdef".includes(c); }) > 0
+        ? false
+        : true;
+};
+exports.isObjectString = function (input) {
+    try {
+        JSON.parse(input);
+    }
+    catch (e) {
+        return false;
+    }
+    return true;
 };
 //# sourceMappingURL=checking.js.map

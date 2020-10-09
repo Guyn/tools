@@ -11,9 +11,9 @@ exports.componentToHexValue = function (c) {
 exports.rgbToHex = function (rgb) {
     var r = rgb.r, g = rgb.g, b = rgb.b;
     return ("#" +
-        exports.componentToHexValue(utils_1.minmax(r, 0, 255)) +
-        exports.componentToHexValue(utils_1.minmax(g, 0, 255)) +
-        exports.componentToHexValue(utils_1.minmax(b, 0, 255)));
+        exports.componentToHexValue(utils_1.minMax(r, 0, 255)) +
+        exports.componentToHexValue(utils_1.minMax(g, 0, 255)) +
+        exports.componentToHexValue(utils_1.minMax(b, 0, 255)));
 };
 // // From Hex
 // export const hexToRgb = (hex: Hex): RGB => {

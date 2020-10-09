@@ -1,29 +1,19 @@
 // Checking
 
 export const isHex = (hex: string): boolean => {
-  return (
-    hex.length == 7 &&
-    hex.charAt(0) == "#" &&
-    !hex.split("").find((char: string | number, index: number) => {
-      if (index == 0) return false;
-      return [
-        "a",
-        "b",
-        "c",
-        "d",
-        "e",
-        "f",
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-      ].includes(typeof char == "number" ? char : char.toLowerCase());
-    })
-  );
+  const hexChars = hex.toLowerCase().split("");
+  return hexChars.length !== 7 ||
+    hexChars[0] !== "#" ||
+    hexChars.slice(1, 7).findIndex((c) => "0123456789abcdef".includes(c)) > 0
+    ? false
+    : true;
+};
+
+export const isObjectString = (input: string): boolean => {
+  try {
+    JSON.parse(input);
+  } catch (e) {
+    return false;
+  }
+  return true;
 };

@@ -1,5 +1,5 @@
 import { Hex, RGB } from "../types";
-import { minmax } from "./utils";
+import { minMax } from "./utils";
 
 // Component
 
@@ -14,9 +14,9 @@ export const rgbToHex = (rgb: RGB): Hex => {
   const { r, g, b } = rgb;
   return (
     "#" +
-    componentToHexValue(minmax(r, 0, 255)) +
-    componentToHexValue(minmax(g, 0, 255)) +
-    componentToHexValue(minmax(b, 0, 255))
+    componentToHexValue(minMax(r, 0, 255)) +
+    componentToHexValue(minMax(g, 0, 255)) +
+    componentToHexValue(minMax(b, 0, 255))
   );
 };
 
