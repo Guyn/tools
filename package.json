@@ -1,6 +1,6 @@
 {
   "name": "@guyn/tools",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Tools for converting and typing colors",
   "main": "dist/index.js",
   "scripts": {
