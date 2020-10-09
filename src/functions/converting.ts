@@ -1,5 +1,6 @@
 import { Hex, RGB } from "../types";
 import { minMax } from "./utils";
+import { isHex } from "./checking";
 
 // Component
 
@@ -22,11 +23,14 @@ export const rgbToHex = (rgb: RGB): Hex => {
 
 // // From Hex
 
-// export const hexToRgb = (hex: Hex): RGB => {
-//   const hexArray: [] = hex.match(/.{1,2}/g;
-//     return {
-//         r: parseInt(hexArray[0], 16),
-//         g: parseInt(hexArray[1], 16),
-//         b: parseInt(hexArray[2], 16),
-//     };
-// };
+export const hexToRgb = (c: Hex): RGB => {
+  if (!isHex(c)) return { r: 0, g: 0, b: 0 };
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(c);
+  if (result)
+    return {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16),
+    };
+  else return { r: 0, g: 0, b: 0 };
+};

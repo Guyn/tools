@@ -1,4 +1,4 @@
-import { componentToHexValue, rgbToHex } from "./converting";
+import { hexToRgb, componentToHexValue, rgbToHex } from "./converting";
 // import { hexToRgb,componentToHexValue } from "./converting";
 
 describe("Converting", () => {
@@ -32,15 +32,18 @@ describe("Converting", () => {
     });
   });
 
-  //   describe("hexToRgb", () => {
-  //     it("#FFFFFF should return", () => {
-  //       expect(hexToRgb("#FFFFFF")).toEqual({ r: 255, g: 255, b: 255 });
-  //     });
-  //     it("#FFFFfF should return", () => {
-  //       expect(hexToRgb("#FFFFfF")).toEqual({ r: 255, g: 255, b: 255 });
-  //     });
-  //     it("#FFF should return undefined", () => {
-  //       expect(hexToRgb("#FFF")).toBeUndefined;
-  //     });
-  //   });
+  describe("hexToRgb", () => {
+    it("#FFFFFF should return", () => {
+      expect(hexToRgb("#FFFFFF")).toEqual({ r: 255, g: 255, b: 255 });
+    });
+    it("#FFFFfF should return", () => {
+      expect(hexToRgb("#FFFFfF")).toEqual({ r: 255, g: 255, b: 255 });
+    });
+    it("#FFF should return undefined", () => {
+      expect(hexToRgb("#FFF")).toEqual({ b: 0, g: 0, r: 0 });
+    });
+    it("#FFF should return undefined", () => {
+      expect(hexToRgb("#FF00AA")).toEqual({ b: 170, g: 0, r: 255 });
+    });
+  });
 });
