@@ -31,16 +31,19 @@ describe("Converting", function () {
             expect(converting_1.rgbToHex({ r: 256, g: 255, b: 0 })).toBe("#ffff00");
         });
     });
-    //   describe("hexToRgb", () => {
-    //     it("#FFFFFF should return", () => {
-    //       expect(hexToRgb("#FFFFFF")).toEqual({ r: 255, g: 255, b: 255 });
-    //     });
-    //     it("#FFFFfF should return", () => {
-    //       expect(hexToRgb("#FFFFfF")).toEqual({ r: 255, g: 255, b: 255 });
-    //     });
-    //     it("#FFF should return undefined", () => {
-    //       expect(hexToRgb("#FFF")).toBeUndefined;
-    //     });
-    //   });
+    describe("hexToRgb", function () {
+        it("#FFFFFF should return", function () {
+            expect(converting_1.hexToRgb("#FFFFFF")).toEqual({ r: 255, g: 255, b: 255 });
+        });
+        it("#FFFFfF should return", function () {
+            expect(converting_1.hexToRgb("#FFFFfF")).toEqual({ r: 255, g: 255, b: 255 });
+        });
+        it("#FFF should return undefined", function () {
+            expect(converting_1.hexToRgb("#FFF")).toEqual({ b: 0, g: 0, r: 0 });
+        });
+        it("#FFF should return undefined", function () {
+            expect(converting_1.hexToRgb("#FF00AA")).toEqual({ b: 170, g: 0, r: 255 });
+        });
+    });
 });
 //# sourceMappingURL=converting.test.js.map
