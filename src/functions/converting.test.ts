@@ -1,4 +1,10 @@
-import { hexToRgb, componentToHexValue, rgbToHex } from "./converting";
+import {
+  hexToRgb,
+  componentToHexValue,
+  rgbToHex,
+  rgbToHsl,
+  hexToHsl,
+} from "./converting";
 // import { hexToRgb,componentToHexValue } from "./converting";
 
 describe("Converting", () => {
@@ -44,6 +50,45 @@ describe("Converting", () => {
     });
     it("#FFF should return undefined", () => {
       expect(hexToRgb("#FF00AA")).toEqual({ b: 170, g: 0, r: 255 });
+    });
+  });
+
+  describe("rgbToHsl", () => {
+    it("0, 0, 0 to 0, 0, 0", () => {
+      expect(rgbToHsl({ r: 0, g: 0, b: 0 })).toEqual({ h: 0, s: 0, l: 0 });
+    });
+    it("255,255,255 to 0, 0, 100", () => {
+      expect(rgbToHsl({ r: 255, g: 255, b: 255 })).toEqual({
+        h: 0,
+        s: 0,
+        l: 100,
+      });
+    });
+    it("255,0,0 to 0, 100, 50", () => {
+      expect(rgbToHsl({ r: 255, g: 0, b: 0 })).toEqual({
+        h: 0,
+        s: 100,
+        l: 50,
+      });
+    });
+    it("37,154, 213 to 200, 83, 84", () => {
+      expect(rgbToHsl({ r: 37, g: 154, b: 213 })).toEqual({
+        h: 200,
+        s: 70,
+        l: 49,
+      });
+    });
+  });
+
+  describe("hexToHsl", () => {
+    it("#FFFFFF should return 0,0,100", () => {
+      expect(hexToHsl("#FFFFFF")).toEqual({ h: 0, s: 0, l: 100 });
+    });
+    it("#000000 should return 0,0,0", () => {
+      expect(hexToHsl("#00000")).toEqual({ h: 0, s: 0, l: 0 });
+    });
+    it("#259ad5 should return 200,70,49", () => {
+      expect(hexToHsl("#259ad5")).toEqual({ h: 200, s: 70, l: 49 });
     });
   });
 });

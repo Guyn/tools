@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.hexToRgb = exports.rgbToHex = exports.componentToHexValue = void 0;
+exports.hexToHsl = exports.rgbToHsl = exports.hexToRgb = exports.rgbToHex = exports.componentToHexValue = void 0;
 var utils_1 = require("./utils");
 var checking_1 = require("./checking");
 // Component
@@ -29,5 +29,42 @@ exports.hexToRgb = function (c) {
         };
     else
         return { r: 0, g: 0, b: 0 };
+};
+exports.rgbToHsl = function (rgb) {
+    (rgb.r /= 255), (rgb.g /= 255), (rgb.b /= 255);
+    var max = Math.max(rgb.r, rgb.g, rgb.b), min = Math.min(rgb.r, rgb.g, rgb.b);
+    var hue, saturation, lightness = (max + min) / 2;
+    if (max == min) {
+        hue = saturation = 0; // achromatic
+    }
+    else {
+        var delta = max - min;
+        saturation =
+            lightness > 0.5 ? delta / (2 - max - min) : delta / (max + min);
+        switch (max) {
+            case rgb.r:
+                hue = (rgb.g - rgb.b) / delta + (rgb.g < rgb.b ? 6 : 0);
+                break;
+            case rgb.g:
+                hue = (rgb.b - rgb.r) / delta + 2;
+                break;
+            case rgb.b:
+                hue = (rgb.r - rgb.g) / delta + 4;
+                break;
+        }
+        if (hue)
+            hue /= 6;
+        else
+            hue = 0;
+    }
+    return {
+        h: Math.round(360 * hue),
+        s: Math.round(saturation * 100),
+        l: Math.round(lightness * 100),
+    };
+};
+exports.hexToHsl = function (c) {
+    var rgb = exports.hexToRgb(c);
+    return exports.rgbToHsl(rgb);
 };
 //# sourceMappingURL=converting.js.map
