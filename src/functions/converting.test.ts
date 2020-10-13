@@ -51,6 +51,9 @@ describe("Converting", () => {
     it("#FFF should return undefined", () => {
       expect(hexToRgb("#FF00AA")).toEqual({ b: 170, g: 0, r: 255 });
     });
+    it("#259ad5 should return a valid value", () => {
+      expect(hexToRgb("#259ad5")).toEqual({ r: 37, g: 154, b: 213 });
+    });
   });
 
   describe("rgbToHsl", () => {

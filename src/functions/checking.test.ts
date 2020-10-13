@@ -29,6 +29,9 @@ describe("Checking", () => {
     it("3232A11 should return false", () => {
       expect(isHex("3232A11")).toBe(false);
     });
+    it("#259ad5 should return true", () => {
+      expect(isHex("#259ad5")).toBe(true);
+    });
   });
 
   describe("isObject", () => {
