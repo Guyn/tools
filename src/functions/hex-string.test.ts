@@ -8,6 +8,9 @@ describe('Hex Convert', () => {
     it('Hex with space should be converted to a hex', () => {
       expect(toHexChars(' #ff0aa0')).toStrictEqual('#ff0aa0');
     });
+    it('Hex with space should be converted to a hex', () => {
+      expect(toHexChars(' #fff')).toStrictEqual('#ffffff');
+    });
   });
 
   describe('toHexChars - Group', () => {
@@ -63,6 +66,7 @@ describe('Hex Convert', () => {
       expect(findHex('#aabbcc #aabbcc #aaa')).toStrictEqual([
         '#aabbcc',
         '#aabbcc',
+        '#aaaaaa',
       ]);
     });
   });
