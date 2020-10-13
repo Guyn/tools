@@ -1,12 +1,14 @@
 "use strict";
 // Checking
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isObjectString = exports.isHex = void 0;
+exports.isObjectString = exports.isHex = exports.allowedHexCharacters = void 0;
+exports.allowedHexCharacters = "01234567890abcdef";
 exports.isHex = function (hex) {
     var hexChars = hex.toLowerCase().split("");
     return hexChars.length !== 7 ||
         hexChars[0] !== "#" ||
-        hexChars.slice(1, 7).findIndex(function (c) { return "0123456789abcdef".includes(c); }) > 0
+        hexChars.slice(1, 7).filter(function (c) { return exports.allowedHexCharacters.includes(c); })
+            .length != 6
         ? false
         : true;
 };

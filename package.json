@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "eslint": "npx eslint . --ext .js,.jsx,.ts,.tsx"
+    "eslint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
+    "prep": "npm run eslint && npm run test && npm run build",
+    "prepublishOnly": "npm run prep"
   },
   "repository": {
     "type": "git",
@@ -37,8 +39,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run test && npm run build",
-      "pre-publish": "npm run test && npm run build"
+      "pre-push": "npm run prep"
     }
   }
 }

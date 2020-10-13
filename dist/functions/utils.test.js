@@ -25,5 +25,22 @@ describe("Utils", function () {
             expect(utils_1.minMax(256, -1000, 100)).toBe(100);
         });
     });
+    describe("limitTo", function () {
+        it("String should be limited to 7 chars - untouched", function () {
+            expect(utils_1.limitTo("This is", 7)).toBe("This is");
+        });
+        it("String should be limited to 7 chars - remove chars", function () {
+            expect(utils_1.limitTo("This is a test", 7)).toBe("This is");
+        });
+        it("String should be limited to 7 chars - add spaces", function () {
+            expect(utils_1.limitTo("This", 7)).toBe("This   ");
+        });
+        it("String should be limited to 7 chars - add 0's", function () {
+            expect(utils_1.limitTo("#ae", 7, "0")).toBe("#ae0000");
+        });
+        it("String should be limited to 7 chars - add 0's (number)", function () {
+            expect(utils_1.limitTo("#ae", 7, 0)).toBe("#ae0000");
+        });
+    });
 });
 //# sourceMappingURL=utils.test.js.map

@@ -30,6 +30,9 @@ describe("Checking", function () {
         it("3232A11 should return false", function () {
             expect(checking_1.isHex("3232A11")).toBe(false);
         });
+        it("#259ad5 should return true", function () {
+            expect(checking_1.isHex("#259ad5")).toBe(true);
+        });
     });
     describe("isObject", function () {
         it("string should return false", function () {
