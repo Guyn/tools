@@ -1,12 +1,12 @@
-import { Hex, RGB, HSL } from "../types";
-import { minMax } from "./utils";
-import { isHex } from "./checking";
+import { Hex, RGB, HSL } from '../types';
+import { minMax } from './utils';
+import { isHex } from './checking';
 
 // Component
 
 export const componentToHexValue = (c: number): Hex => {
   const hex = c.toString(16);
-  return hex.length == 1 ? "0" + hex : hex;
+  return hex.length == 1 ? '0' + hex : hex;
 };
 
 // From Rgb
@@ -14,7 +14,7 @@ export const componentToHexValue = (c: number): Hex => {
 export const rgbToHex = (rgb: RGB): Hex => {
   const { r, g, b } = rgb;
   return (
-    "#" +
+    '#' +
     componentToHexValue(minMax(r, 0, 255)) +
     componentToHexValue(minMax(g, 0, 255)) +
     componentToHexValue(minMax(b, 0, 255))

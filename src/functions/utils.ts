@@ -4,9 +4,9 @@ export const minMax = (input: number = 0, min: number = 0, max: number = 255) =>
 export const limitTo = (
   str: string,
   limit: number,
-  fill: string | number = " "
+  fill: string | number = ' '
 ): string => {
-  if (typeof fill == "number") fill = `${fill}`;
+  if (typeof fill == 'number') fill = `${fill}`;
   if (str.length == limit) return str;
   if (str.length < limit) {
     while (str.length < limit) {

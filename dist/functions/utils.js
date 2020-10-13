@@ -8,8 +8,8 @@ exports.minMax = function (input, min, max) {
     return Math.min(Math.max(input, min), max);
 };
 exports.limitTo = function (str, limit, fill) {
-    if (fill === void 0) { fill = " "; }
-    if (typeof fill == "number")
+    if (fill === void 0) { fill = ' '; }
+    if (typeof fill == 'number')
         fill = "" + fill;
     if (str.length == limit)
         return str;

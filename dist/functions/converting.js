@@ -6,12 +6,12 @@ var checking_1 = require("./checking");
 // Component
 exports.componentToHexValue = function (c) {
     var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
+    return hex.length == 1 ? '0' + hex : hex;
 };
 // From Rgb
 exports.rgbToHex = function (rgb) {
     var r = rgb.r, g = rgb.g, b = rgb.b;
-    return ("#" +
+    return ('#' +
         exports.componentToHexValue(utils_1.minMax(r, 0, 255)) +
         exports.componentToHexValue(utils_1.minMax(g, 0, 255)) +
         exports.componentToHexValue(utils_1.minMax(b, 0, 255)));
