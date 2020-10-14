@@ -34,6 +34,29 @@ describe('Checking', function () {
             expect(checking_1.isHex('#259ad5')).toBe(true);
         });
     });
+    describe('isRgb', function () {
+        it('#FFF should return false', function () {
+            expect(checking_1.isRgb('#FFF')).toBe(false);
+        });
+        it('{r: 0, g: 0, b: 0}:Object should return true', function () {
+            expect(checking_1.isRgb({ r: 0, g: 0, b: 0 })).toBe(true);
+        });
+        it('{r: 255, g: 255, b: 255}:Object should return true', function () {
+            expect(checking_1.isRgb({ r: 255, g: 255, b: 255 })).toBe(true);
+        });
+        it('{r: 255, g: 255, b: 256}:Object should return true', function () {
+            expect(checking_1.isRgb({ r: 255, g: 255, b: 256 })).toBe(false);
+        });
+        it('{r: 255, g: 255, b: 255, a: 0}:Object should return true', function () {
+            expect(checking_1.isRgb({ r: 255, g: 255, b: 256, a: 0 })).toBe(false);
+        });
+        it('{c: 255, m: 255, y: 256}:Object should return true', function () {
+            expect(checking_1.isRgb({ c: 255, m: 255, y: 256 })).toBe(false);
+        });
+        it('[255,0,0]:Array should return false', function () {
+            expect(checking_1.isRgb({ c: 255, m: 255, y: 256 })).toBe(false);
+        });
+    });
     describe('isObject', function () {
         it('string should return false', function () {
             expect(checking_1.isObjectString('test')).toBe(false);
