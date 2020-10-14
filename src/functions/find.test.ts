@@ -1,29 +1,34 @@
-import { toHexChars, toHexCharsGroup, findHex } from './hex-string';
+import { findHex, getColorDistance } from './find';
 
 describe('Hex Convert', () => {
-  describe('toHexChars', () => {
-    it('string should be converted to a hex', () => {
-      expect(toHexChars('This is a test')).toStrictEqual('#ae0000');
+  describe('getColorDistance', () => {
+    it('Should be a maxed out distance', () => {
+      const input = { r: 0, g: 0, b: 0 };
+      const compare = { r: 255, g: 255, b: 255 };
+      expect(getColorDistance(input, compare)).toBe(442);
     });
-    it('Hex with space should be converted to a hex', () => {
-      expect(toHexChars(' #ff0aa0')).toStrictEqual('#ff0aa0');
+    it('Should be no distance', () => {
+      const input = { r: 0, g: 0, b: 0 };
+      const compare = { r: 0, g: 0, b: 0 };
+      expect(getColorDistance(input, compare)).toBe(0);
     });
-    it('Hex with space should be converted to a hex', () => {
-      expect(toHexChars(' #fff')).toStrictEqual('#ffffff');
+    it('Should be full lightness distance', () => {
+      const input = { r: 255, g: 0, b: 0 };
+      const compare = { r: 0, g: 255, b: 0 };
+      expect(getColorDistance(input, compare)).toBe(361);
+    });
+    it('Should be full lightness distance', () => {
+      const input = { r: 0, g: 0, b: 255 };
+      const compare = { r: 0, g: 255, b: 0 };
+      expect(getColorDistance(input, compare)).toBe(361);
+    });
+    it('Should be full lightness distance', () => {
+      const input = { r: 0, g: 0, b: 255 };
+      const compare = { r: 0, g: 255, b: 0 };
+      expect(getColorDistance(input, compare)).toBe(361);
     });
   });
 
-  describe('toHexChars - Group', () => {
-    it('string should be converted to a hex', () => {
-      expect(toHexCharsGroup(['This is a test'])).toStrictEqual([]);
-    });
-    it('Hex with space should be converted to a hex', () => {
-      expect(toHexCharsGroup([' #ff0aa0', ' #aa0aa0'])).toStrictEqual([
-        '#ff0aa0',
-        '#aa0aa0',
-      ]);
-    });
-  });
   describe('findHex', () => {
     it('Find hex strings, single', () => {
       expect(findHex('#aabbcc')).toStrictEqual(['#aabbcc']);

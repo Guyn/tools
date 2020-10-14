@@ -1,4 +1,4 @@
-import { isHex, isObjectString } from './checking';
+import { isHex, isObjectString, isRgb } from './checking';
 
 describe('Checking', () => {
   describe('isHex', () => {
@@ -31,6 +31,29 @@ describe('Checking', () => {
     });
     it('#259ad5 should return true', () => {
       expect(isHex('#259ad5')).toBe(true);
+    });
+  });
+  describe('isRgb', () => {
+    it('#FFF should return false', () => {
+      expect(isRgb('#FFF')).toBe(false);
+    });
+    it('{r: 0, g: 0, b: 0}:Object should return true', () => {
+      expect(isRgb({ r: 0, g: 0, b: 0 })).toBe(true);
+    });
+    it('{r: 255, g: 255, b: 255}:Object should return true', () => {
+      expect(isRgb({ r: 255, g: 255, b: 255 })).toBe(true);
+    });
+    it('{r: 255, g: 255, b: 256}:Object should return true', () => {
+      expect(isRgb({ r: 255, g: 255, b: 256 })).toBe(false);
+    });
+    it('{r: 255, g: 255, b: 255, a: 0}:Object should return true', () => {
+      expect(isRgb({ r: 255, g: 255, b: 256, a: 0 })).toBe(false);
+    });
+    it('{c: 255, m: 255, y: 256}:Object should return true', () => {
+      expect(isRgb({ c: 255, m: 255, y: 256 })).toBe(false);
+    });
+    it('[255,0,0]:Array should return false', () => {
+      expect(isRgb({ c: 255, m: 255, y: 256 })).toBe(false);
     });
   });
 

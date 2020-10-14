@@ -4,11 +4,12 @@ exports.findHex = exports.toHexCharsGroup = exports.toHexChars = void 0;
 var utils_1 = require("./utils");
 var checking_1 = require("./checking");
 exports.toHexChars = function (input) {
-    return utils_1.limitTo('#' +
+    var str = '#' +
         input
             .split('')
             .filter(function (c) { return checking_1.allowedHexCharacters.includes(c); })
-            .join(''), 7, '0');
+            .join('');
+    return utils_1.limitTo(str, 7, str.length == 4 ? str.substr(1, 4) : '0');
 };
 exports.toHexCharsGroup = function (input) {
     return input
@@ -23,6 +24,6 @@ exports.findHex = function (input) {
         .join('') // Make it into one string again
         .split('#') // Split it up by the #
         .map(function (c) { return (c = '#' + c); }) // add the hash back to every code
-    ).filter(function (h) { return input.includes(h); });
+    ).filter(function (h) { return input.includes(h) || input.includes(h.substr(0, 4)); });
 }; // Check if the has exists in the input.
 //# sourceMappingURL=hex-string.js.map

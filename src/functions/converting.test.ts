@@ -4,6 +4,11 @@ import {
   rgbToHex,
   rgbToHsl,
   hexToHsl,
+  rgbToYuv,
+  yuvToRgb,
+  yuvToHex,
+  // rgbToCmyk,
+  hexToCmyk,
 } from './converting';
 // import { hexToRgb,componentToHexValue } from "./converting";
 
@@ -88,10 +93,126 @@ describe('Converting', () => {
       expect(hexToHsl('#FFFFFF')).toEqual({ h: 0, s: 0, l: 100 });
     });
     it('#000000 should return 0,0,0', () => {
-      expect(hexToHsl('#00000')).toEqual({ h: 0, s: 0, l: 0 });
+      expect(hexToHsl('#000000')).toEqual({ h: 0, s: 0, l: 0 });
     });
     it('#259ad5 should return 200,70,49', () => {
       expect(hexToHsl('#259ad5')).toEqual({ h: 200, s: 70, l: 49 });
     });
   });
+
+  describe('hexToCmyk', () => {
+    it('#FFFFFF should return 0,0,100', () => {
+      expect(hexToCmyk('#FFFFFF')).toEqual({ c: 0, m: 0, y: 0, k: 0 });
+    });
+    it('#000000 should return 0,0,0', () => {
+      expect(hexToCmyk('#000000')).toEqual({ c: 100, m: 100, y: 100, k: 100 });
+    });
+    it('#259ad5 should return 200,70,49', () => {
+      expect(hexToCmyk('#259ad5')).toEqual({ c: 83, m: 28, y: 0, k: 16 });
+    });
+  });
+
+  describe('rgbToYuv', () => {
+    it('0, 0, 0 to 0, 0, 0', () => {
+      expect(rgbToYuv({ r: 0, g: 0, b: 0 })).toEqual({
+        y: 0,
+        u: 128,
+        v: 127,
+      });
+    });
+    it('255,255,255 to 0, 0, 100', () => {
+      expect(rgbToYuv({ r: 255, g: 255, b: 255 })).toEqual({
+        y: 255,
+        u: 128,
+        v: 127,
+      });
+    });
+    it('255,0,0 to 0, 100, 50', () => {
+      expect(rgbToYuv({ r: 255, g: 0, b: 0 })).toEqual({
+        y: 76,
+        u: 84,
+        v: 255,
+      });
+    });
+    it('37,154, 213 to 200, 83, 84', () => {
+      expect(rgbToYuv({ r: 37, g: 154, b: 213 })).toEqual({
+        y: 126,
+        u: 177,
+        v: 63,
+      });
+    });
+  });
+
+  describe('yuvToRgb', () => {
+    xit('0, 0, 0 to 0, 0, 0', () => {
+      // Should be
+      expect(
+        yuvToRgb({
+          y: 0,
+          u: 128,
+          v: 127,
+        })
+      ).toEqual({ r: 0, g: 0, b: 0 });
+      // Substitute
+      expect(
+        yuvToRgb({
+          y: 0,
+          u: 128,
+          v: 127,
+        })
+      ).toEqual({ r: 0, g: 0, b: 1 });
+    });
+    it('255,255,255 to 0, 0, 100', () => {
+      expect(
+        yuvToRgb({
+          y: 255,
+          u: 128,
+          v: 127,
+        })
+      ).toEqual({
+        r: 255,
+        g: 255,
+        b: 255,
+      });
+    });
+    it('255,0,0 to 0, 100, 50', () => {
+      expect(
+        yuvToRgb({
+          y: 76,
+          u: 84,
+          v: 255,
+        })
+      ).toEqual({ r: 255, g: 0, b: 0 });
+    });
+    it('37,154, 213 to 200, 83, 84', () => {
+      expect(
+        yuvToRgb({
+          y: 126,
+          u: 177,
+          v: 63,
+        })
+      ).toEqual({ r: 37, g: 154, b: 213 });
+    });
+  });
+  describe('yuvToHex', () => {
+    it('{y: 126, u: 177, v: 63 } to #259ad5', () => {
+      // Should be
+      expect(
+        yuvToHex({
+          y: 126,
+          u: 177,
+          v: 63,
+        })
+      ).toEqual('#259ad5');
+    });
+  });
+
+  // describe('rgbToCmyk', () => {
+  //   it('black should return cmyk', () => {
+  //     expect(rgbToCmyk({r: 0, g: 0, b: 0})).toEqual({ c: 0, m:0, y:0, k:100 });
+  //   });
+  //   it('red should return cmyk', () => {
+  //     expect(rgbToCmyk({r: 255, g: 0, b: 0})).toEqual({ c: 0, m:100, y:100, k:0 });
+  //   });
+  // });
 });

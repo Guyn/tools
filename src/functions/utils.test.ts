@@ -1,4 +1,4 @@
-import { minMax, limitTo } from './utils';
+import { minMax, limitTo,isBetween,isTruthy,isFalsy } from './utils';
 describe('Utils', () => {
   describe('minMax', () => {
     it('0 should return 0', () => {
@@ -39,5 +39,78 @@ describe('Utils', () => {
     it("String should be limited to 7 chars - add 0's (number)", () => {
       expect(limitTo('#ae', 7, 0)).toBe('#ae0000');
     });
+  });
+
+
+  describe('isBetween', () => {
+    it('10, 0, 100 should return true', () => {
+      expect(isBetween(10,0,100)).toBeTruthy;
+    });  
+    it('10, 20, 100 should return false', () => {
+      expect(isBetween(10,20,100)).toBeFalsy;
+    });  
+    it('110, 0, 100 should return false', () => {
+      expect(isBetween(10,0,100)).toBeFalsy;
+    });  
+    it('-10, 0, 100 should return false', () => {
+      expect(isBetween(-10,0,100)).toBeFalsy;
+    });
+    it('-10, -20, 100 should return true', () => {
+      expect(isBetween(-10,-20,100)).toBeTruthy;
+    });
+  });
+
+
+  describe('isTruthy', () => {
+    it('undefined should be false', () => {
+      expect(isTruthy(undefined)).toBeFalsy;
+    }); 
+    it('0 should be false', () => {
+      expect(isTruthy(0)).toBeFalsy;
+    }); 
+    it('-1 should be true', () => {
+      expect(isTruthy(-1)).toBeTruthy;
+    }); 
+    it('"" should be false', () => {
+      expect(isTruthy("")).toBeFalsy;
+    }); 
+    it('" " should be true', () => {
+      expect(isTruthy(" ")).toBeTruthy;
+    }); 
+    it('true should be true', () => {
+      expect(isTruthy(true)).toBeTruthy;
+    }); 
+    it('false should be true', () => {
+      expect(isTruthy(false)).toBeFalsy;
+    }); 
+    it('"false" should be true', () => {
+      expect(isTruthy("false")).toBeTruthy;
+    }); 
+  });
+  describe('isFalsy', () => {
+    it('undefined should be false', () => {
+      expect(isFalsy(undefined)).toBeTruthy;
+    }); 
+    it('0 should be false', () => {
+      expect(isFalsy(0)).toBeTruthy;
+    }); 
+    it('-1 should be true', () => {
+      expect(isFalsy(-1)).toBeFalsy;
+    }); 
+    it('"" should be false', () => {
+      expect(isFalsy("")).toBeTruthy;
+    }); 
+    it('" " should be true', () => {
+      expect(isFalsy(" ")).toBeFalsy;
+    }); 
+    it('true should be true', () => {
+      expect(isFalsy(true)).toBeFalsy;
+    }); 
+    it('false should be true', () => {
+      expect(isFalsy(false)).toBeTruthy;
+    }); 
+    it('"false" should be true', () => {
+      expect(isFalsy("false")).toBeFalsy;
+    }); 
   });
 });

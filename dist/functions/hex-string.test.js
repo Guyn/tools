@@ -9,6 +9,9 @@ describe('Hex Convert', function () {
         it('Hex with space should be converted to a hex', function () {
             expect(hex_string_1.toHexChars(' #ff0aa0')).toStrictEqual('#ff0aa0');
         });
+        it('Hex with space should be converted to a hex', function () {
+            expect(hex_string_1.toHexChars(' #fff')).toStrictEqual('#ffffff');
+        });
     });
     describe('toHexChars - Group', function () {
         it('string should be converted to a hex', function () {
@@ -63,6 +66,7 @@ describe('Hex Convert', function () {
             expect(hex_string_1.findHex('#aabbcc #aabbcc #aaa')).toStrictEqual([
                 '#aabbcc',
                 '#aabbcc',
+                '#aaaaaa',
             ]);
         });
     });
