@@ -14,4 +14,5 @@ __exportStar(require("./checking"), exports);
 __exportStar(require("./converting"), exports);
 __exportStar(require("./space/hex"), exports);
 __exportStar(require("./utils"), exports);
+__exportStar(require("./space"), exports);
 //# sourceMappingURL=index.js.map

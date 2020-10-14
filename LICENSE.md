@@ -1,3 +1,7 @@
+---
+menu: footer
+---
+
 The MIT License (MIT)
 
 Copyright (c) 2020-present Sil van Diepen
